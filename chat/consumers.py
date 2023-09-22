@@ -50,4 +50,4 @@ class ChatConsumer(AsyncWebsocketConsumer):
         username = event["username"]
         # send the message and username param to all instances that are active in 
         # the group
-        await self.send(text_date = json.dumps({"message": message, "username": username}))
+        await self.send(text_data = json.dumps({"message": message, "username": username}))

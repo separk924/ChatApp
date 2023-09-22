@@ -46,10 +46,10 @@ ASGI_APPLICATION = 'ChatApp.asgi.application'
 
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts" : [("localhost", 8000)],
-        }
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
+        # "CONFIG": {
+        #     "hosts" : [("localhost", 8000)],
+        # }
     }
 }
 
@@ -134,3 +134,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = 'chat-page'
+
+LOGOUT_REDIRECT_URL = 'login-user'
