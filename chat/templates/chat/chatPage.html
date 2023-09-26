@@ -4,7 +4,7 @@
         <center><h1>Welcome to Connect {{request.user.username}}! Let's chat!</h1></center>
         <br>
         {% if request.user.is_authenticated %}
-        <center> Logout the chat Page <a href = "{% url 'logout-user' %}">Logout</a></center>
+        <center> <a href = "{% url 'logout-user' %}">Logout</a></center>
         {% endif %}
         <div
         class="chat_item_container"
