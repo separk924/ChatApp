@@ -1,5 +1,8 @@
-from django import forms  
+from django import forms
+from .models import User
 
-class InputForm(forms.Form):
-    username = forms.CharField(max_length=300)
-    password = forms.CharField(max_length=20, widget=forms.PasswordInput)
+class InputForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password']
+        widgets = {'password': forms.PasswordInput}
