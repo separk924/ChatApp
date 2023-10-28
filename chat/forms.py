@@ -1,8 +1,28 @@
 from django import forms
-from .models import User
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
-class InputForm(forms.ModelForm):
+class InputForm(UserCreationForm):
+    email = forms.EmailField(max_length=50, help_text='Required')
+    
     class Meta:
         model = User
-        fields = ['username', 'password']
-        widgets = {'password': forms.PasswordInput}
+        fields = (
+            'first_name',
+            'last_name',
+            'email', 
+            'username',
+            'password1', 
+            'password2'
+            )
+        # widgets = {'password': forms.PasswordInput}
+        
+    def save(self, commit=True):
+        user = super(InputForm, self).save(commit=False)
+        user.email = self.cleaned_data['email']
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
+        
+        if commit:
+            user.save()
+        return user

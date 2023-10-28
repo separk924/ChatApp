@@ -1,0 +1,95 @@
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+        rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <style>
+        body {background-color: powderblue;}
+        body {padding: 10em;}
+        h1   {
+            font-family: "logo";
+            font-size: 3em;
+            color: #519FD2;
+        }
+        button {
+            border: none;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #5DADE2;
+            background-color: powderblue;
+            border-radius: 50px;
+            font-size: 1.5em;
+            width: 150px;
+            height: 60px;
+            margin-top: 1.5em;
+            border-color: #9FCFEF;
+        }
+        button:hover {
+            background-color: #9FCFEF;
+            color: #E2EEF6;
+        }
+        .form-group has-feedback {
+            position: relative;
+        }
+        .text-center{
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <center><h1>REGISTER</h1></center>
+        <br/>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="first_name"></label>
+                <!-- your icon -->
+                {% render_field register_form.first_name class="form-control" placeholder="First Name" %}
+            </div>
+            <div class="form-group">
+                <label for="last_name"></label>
+                <!-- your icon -->
+                {% render_field register_form.last_name class="form-control" placeholder="Last Name" %}
+            </div>
+            <div class="form-group">
+                <label for="email"></label>
+                <!-- your icon -->
+                {% render_field register_form.email class="form-control" placeholder="Email" %}
+            </div>
+            <div class="form-group">
+                <label for="username"></label>
+                <!-- your icon -->
+                {% render_field register_form.username class="form-control" placeholder="Username" %}
+            </div>
+            <div class="form-group has-feedback">
+                <label for="password1"></label>
+                <!-- your icon -->
+                {%render_field register_form.password1 class="form-control" placeholder="Password" %}
+            </div>
+            <div class="form-group has-feedback">
+                <label for="password2"></label>
+                <!-- your icon -->
+                {%render_field register_form.password2 class="form-control" placeholder="Confirm Password" %}
+            </div>
+            <button type="submit" class="register">Register</button>
+        {{register_form.errors}}
+        </form>
+        <p class="text-center">If you already have an account, <a href="{% url 'login-user' %}">login</a> instead.</p>
+    </div>
+</body>
+
+{% endblock %}
